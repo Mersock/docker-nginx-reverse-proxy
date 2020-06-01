@@ -10,11 +10,34 @@ services:
       - '80:80'
     links:
       - web
+      - web1
+      - web2
+      - web3
   web:
-    build:
-      context: ./server_2
+    image: php:apache
     container_name: server-php
     volumes:
-      - ./server_2/web:/usr/share/nginx/html
+      - ./server_2/web:/var/www/html
     ports:
       - '81:80'
+  web1:
+    image: php:apache
+    container_name: server-web-1
+    volumes:
+      - ./web_1:/var/www/html
+    ports:
+      - '82:80'
+  web2:
+    image: php:apache
+    container_name: server-web-2
+    volumes:
+      - ./web_2:/var/www/html
+    ports:
+      - '83:80'
+  web3:
+    image: php:apache
+    container_name: server-web-3
+    volumes:
+      - ./web_3:/var/www/html
+    ports:
+      - '84:80'
